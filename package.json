@@ -5,16 +5,11 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://Bunny101204.github.io/<your-repo-name>",
-
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
-
+    "preview": "vite preview"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.4",

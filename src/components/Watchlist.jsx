@@ -3,9 +3,6 @@ import { useState } from "react";
 import genreids from "../utility/genre"
 
 function Watchlist({ watchList, handleRemoveFromWatchList, setWatchList }) {
-
-  
-
   const [search, setSearch] = useState("");
   const [genrelist,setGenreList]=useState(['All Genre']);
   const [currGenre,setCurrentgenre] = useState('All Genre');
@@ -32,7 +29,6 @@ function Watchlist({ watchList, handleRemoveFromWatchList, setWatchList }) {
     let sortedIncreasing=[...watchList].sort((movieA,movieB)=>{
       return movieA.vote_average-movieB.vote_average
     })
-
     setWatchList(sortedIncreasing)
   }
 
@@ -44,16 +40,14 @@ function Watchlist({ watchList, handleRemoveFromWatchList, setWatchList }) {
     setWatchList(sortedDecreasing)
   }
 
-
   return (
-    <div>
+    <div className="bg-gray-900 text-white min-h-screen p-5">
       <div className="flex justify-center flex-wrap m-4">
         {genrelist.map((genre)=>{
           return <div onClick={()=>{handleFilter(genre)}} className={currGenre==genre?"flex justify-center items-center h-[3rem] w-[9rem] bg-blue-400 rounded-xl text-white font-bold m-4":"flex justify-center items-center h-[3rem] w-[9rem] bg-gray-400/50 rounded-xl text-white font-bold m-4"}>
           {genre}
         </div>
         })}
-        
       </div>
       <div className="flex justify-center my-4">
         <input
@@ -61,17 +55,15 @@ function Watchlist({ watchList, handleRemoveFromWatchList, setWatchList }) {
           onChange={handleSearch}
           value={search}
           placeholder=" search for movies"
-          className="p-[5px] h-[3rem] w-[18rem] border-0.5 bg-gray-200 "
+          className="p-[5px] h-[3rem] w-[18rem] border-0.5 bg-gray-200 text-black "
         />
       </div>
-
-      <div className="overflow-hidden rounded-lg border border-gray-200 m-8">
-        <table className="w-full text-gray-500 text-center">
+      <div className="overflow-hidden rounded-lg border border-gray-200 m-8 bg-gray-800">
+        <table className="w-full text-gray-200 text-center">
           <thead className="border-b-2">
             <tr className="border-1">
               <th>Name</th>
               <th className="flex justify-center">
-                
                   <div onClick={sortIncreasing}className="mr-2">
                     <i class="fa-solid fa-arrow-up"></i>
                   </div>
@@ -79,9 +71,7 @@ function Watchlist({ watchList, handleRemoveFromWatchList, setWatchList }) {
                   <div onClick={sortDecreasing} className="ml-2">
                     <i class="fa-solid fa-arrow-down"></i>
                   </div>
-                
               </th>
-
               <th>popularity</th>
               <th>Genre</th>
             </tr>
@@ -105,7 +95,6 @@ function Watchlist({ watchList, handleRemoveFromWatchList, setWatchList }) {
                   <tr key={movieObj.id} className="border-1">
                     <td className="flex items-center px-6 py-4">
                       <img
-
                         className=" h-[100px] w-[80px] "
                         src={`https://image.tmdb.org/t/p/original/${movieObj.poster_path}`}
                         alt=""
