@@ -70,7 +70,7 @@ function App() {
 
   return (
     <>
-      <BrowserRouter basename="/Movie-mate">
+      <BrowserRouter >
         <NavBar />
         <Routes>
           <Route path="/" element={<Navigate to="/movies/trending" replace />} />
