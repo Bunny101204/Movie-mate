@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import genreids from "../utility/genre"
+import { WatchlistSkeleton } from "./Skeleton";
 
 function Watchlist({ watchList, handleRemoveFromWatchList, setWatchList }) {
   const [search, setSearch] = useState("");
   const [genrelist,setGenreList]=useState(['All Genre']);
   const [currGenre,setCurrentgenre] = useState('All Genre');
+  const [loading, setLoading] = useState(true);
 
   let handleFilter=(genre)=>{
     setCurrentgenre(genre)
@@ -17,6 +19,7 @@ function Watchlist({ watchList, handleRemoveFromWatchList, setWatchList }) {
     })
     temp=new Set(temp)
     setGenreList(['All Genre',...temp])
+    setLoading(false);
     console.log(temp)
   },[watchList])
 
@@ -38,6 +41,10 @@ function Watchlist({ watchList, handleRemoveFromWatchList, setWatchList }) {
       return movieB.vote_average-movieA.vote_average
     })
     setWatchList(sortedDecreasing)
+  }
+
+  if (loading) {
+    return <WatchlistSkeleton />;
   }
 
   return (

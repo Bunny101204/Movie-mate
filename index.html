@@ -1,15 +1,73 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="src/clapImage.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="/dist/styles.css" rel="stylesheet">
+    <link href="/dist/styles.css" rel="stylesheet" />
+
     <title>Movie-mate</title>
+
+    <!-- SEO Meta Tags -->
+    <title>Movie Mate - Discover Trending Movies & TV Shows</title>
+    <meta
+      name="description"
+      content="Discover trending movies, search films, and manage your watchlist with Movie Mate. Built with React and powered by TMDB API."
+    />
+    <meta
+      name="keywords"
+      content="movies, trending, watchlist, TMDB, React, movie discovery, film search"
+    />
+    <meta name="author" content="Movie Mate" />
+
+    <!-- Open Graph Tags -->
+    <meta
+      property="og:title"
+      content="Movie Mate - Discover Trending Movies & TV Shows"
+    />
+    <meta
+      property="og:description"
+      content="Discover trending movies, search films, and manage your watchlist with Movie Mate."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://your-domain.com" />
+    <meta property="og:image" content="src/clapImage.jpg" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Movie Mate - Discover Trending Movies"
+    />
+    <meta
+      name="twitter:description"
+      content="Discover trending movies and manage your watchlist."
+    />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Movie Mate",
+        "description": "Movie discovery and watchlist management app",
+        "url": "https://your-domain.com",
+        "applicationCategory": "EntertainmentApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-    <script src="https://kit.fontawesome.com/a04a06148b.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/a04a06148b.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

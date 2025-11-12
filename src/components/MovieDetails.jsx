@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { MovieDetailsSkeleton } from "./Skeleton";
 
 function MovieDetails() {
   const { id } = useParams();
@@ -19,7 +20,7 @@ function MovieDetails() {
   }, [id]);
 
   if (loading) {
-    return <div className="bg-gray-900 min-h-screen flex items-center justify-center text-white text-2xl">Loading...</div>;
+    return <MovieDetailsSkeleton />;
   }
   if (!movie) {
     return <div className="bg-gray-900 min-h-screen flex items-center justify-center text-white text-2xl">Movie not found.</div>;

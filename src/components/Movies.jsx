@@ -3,6 +3,7 @@ import MovieCard from "./MovieCard";
 import axios from "axios";
 import Pagination from "./Pagination";
 import { useParams, useNavigate } from "react-router-dom";
+import { MoviesGridSkeleton } from "./Skeleton";
 
 const MOVIE_LISTS = [
   { label: "Trending", value: "trending" },
@@ -44,6 +45,7 @@ function Movies({
     } else {
       url = `https://api.themoviedb.org/3/movie/${validListType}?api_key=0e834bd7b0b6ce4d6010cc5bbfbfe0bc&language=en-US&page=${pageNo}`;
     }
+    //to set the Loading true or false when the component is loading
     axios.get(url).then(function (res) {
       setMovies(res.data.results);
       setLoading(false);
@@ -69,6 +71,10 @@ function Movies({
     // eslint-disable-next-line
   }, [listType]);
 
+  if (loading) {
+    return <MoviesGridSkeleton />;
+  }
+
   return (
     <div className="bg-gray-900 p-5 min-h-screen">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
@@ -87,28 +93,22 @@ function Movies({
           ))}
         </select>
       </div>
-      {loading ? (
-        <div className="text-white text-center text-2xl py-10">Loading...</div>
-      ) : (
-        <>
-          <div className="flex flex-row flex-wrap justify-around gap-8 min-h-[60vh]">
-            {movies.map((movieObj) => (
-              <MovieCard
-                key={movieObj.id}
-                movieObject={movieObj}
-                title={movieObj.title}
-                poster_path={movieObj.poster_path}
-                handleAddToWatchList={handleAddToWatchList}
-                handleRemoveFromWatchList={handleRemoveFromWatchList}
-                watchList={watchList}
-              />
-            ))}
-          </div>
-          <div className="mt-8 flex justify-center">
-            <Pagination pageNo={pageNo} handleNext={handleNext} handlePrev={handlePrev} />
-          </div>
-        </>
-      )}
+      <div className="flex flex-row flex-wrap justify-around gap-8 min-h-[60vh]">
+        {movies.map((movieObj) => (
+          <MovieCard
+            key={movieObj.id}
+            movieObject={movieObj}
+            title={movieObj.title}
+            poster_path={movieObj.poster_path}
+            handleAddToWatchList={handleAddToWatchList}
+            handleRemoveFromWatchList={handleRemoveFromWatchList}
+            watchList={watchList}
+          />
+        ))}
+      </div>
+      <div className="mt-8 flex justify-center">
+        <Pagination pageNo={pageNo} handleNext={handleNext} handlePrev={handlePrev} />
+      </div>
     </div>
   );
 }

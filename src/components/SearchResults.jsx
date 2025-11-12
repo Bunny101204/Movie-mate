@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import MovieCard from "./MovieCard";
 import Pagination from "./Pagination";
 import axios from "axios";
+import { SearchResultsSkeleton } from "./Skeleton";
 
 function SearchResults({ watchList, handleAddToWatchList, handleRemoveFromWatchList }) {
   const { query } = useParams();
@@ -33,14 +34,16 @@ function SearchResults({ watchList, handleAddToWatchList, handleRemoveFromWatchL
     if (pageNo > 1) setPageNo(pageNo - 1);
   }
 
+  if (loading) {
+    return <SearchResultsSkeleton />;
+  }
+
   return (
     <div className="bg-gray-900 p-5 min-h-screen">
       <div className="text-white font-display text-3xl md:text-5xl font-bold text-center mb-6">
         Search Results for "{query}"
       </div>
-      {loading ? (
-        <div className="text-white text-center text-2xl py-10">Loading...</div>
-      ) : movies.length === 0 ? (
+      {movies.length === 0 ? (
         <div className="text-white text-center text-2xl py-10">No results found.</div>
       ) : (
         <>
